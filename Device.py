@@ -11,9 +11,9 @@ def __take_line(collection: List[str]) -> str:
         raise IOError('No more for reading')
 
 # Новая функция
-def __insert_line(collection: List[str], a: str, i: int) -> str:
+def __append_line(collection: List[str], a: str) -> str:
     try:
-        return collection.insert(i, a)
+        return collection.append(a)
     except Exception as exception:
         print(f'Error: {exception}')
     # except IndexError:
@@ -49,10 +49,10 @@ def read_line(device: Device) -> str:
     return __take_line(device.data)
 
 # Новая функция
-def write_line(device: Device, a: str, i: int) -> str:
+def write_line(device: Device, a: str) -> str:
     if not is_writable_device(device):
         raise PermissionError('Writing to the device is not allowed. Choose another device please')
-    return __insert_line(device.data, a, i)
+    return __append_line(device.data, a)
 
 
 def open_device(name: str) -> Device:
